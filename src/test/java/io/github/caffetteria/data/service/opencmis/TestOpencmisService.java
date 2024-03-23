@@ -1,7 +1,9 @@
 package io.github.caffetteria.data.service.opencmis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.chemistry.opencmis.commons.SessionParameter;
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.util.PropsIO;
 import org.junit.jupiter.api.Assertions;
@@ -18,7 +20,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 @Slf4j
-class TestCmisService {
+class TestOpencmisService {
 
     private static final String CMIS_SERVER_DOCKER_IMAGE = "fugeritorg/opencmis:latest";
     private static final int CMIS_SERVER_EXPOSED_PORT = 8080;
@@ -26,6 +28,8 @@ class TestCmisService {
     private static final String CMIS_SERVER_TEST_URL = "/cmis/services11/cmis?wsdl";
 
     private static final int CMIS_SERVER_STARTUP_TIMEOUT_SECONDS = 180;
+
+    private static final String NAMESPACE_CONFIG = "testconfig.";
 
     /*
      * See :
@@ -40,19 +44,19 @@ class TestCmisService {
             .withStartupTimeout( Duration.ofSeconds( CMIS_SERVER_STARTUP_TIMEOUT_SECONDS ) );
 
     @Test
-    void testDataServiceCmis() throws IOException, ConfigException {
+    void testDataServiceOpencmisRun() throws IOException, ConfigException {
         this.cmisServer.start();
         String address = this.cmisServer.getHost();
         Integer port = this.cmisServer.getFirstMappedPort();
         log.info( "cmis server -> {}:{}", address, port );
-        String configNamespace = "testconfig.";
         Properties configProperties = PropsIO.loadFromClassLoader("config/opencmis_data_service_browser.properties");
         // override port
-        String browserUrlKey = String.format( "%sbrowserUrl", configNamespace );
+        String browserUrlKey = String.format( "%sbrowserUrl", NAMESPACE_CONFIG );
         String browserUrl = String.format( "http://%s:%s/cmis/browser", address, port );
         log.info( "cmis server browserUrl key:{}, value{}", browserUrlKey, browserUrl );
         configProperties.setProperty( browserUrlKey, browserUrl );
-        OpencmisDataServiceConfig config = new OpencmisDataServiceConfigDefault( configNamespace, configProperties );
+        // test browser configuration
+        OpencmisDataServiceConfig config = new OpencmisDataServiceConfigDefault( NAMESPACE_CONFIG, configProperties );
         OpencmisDataService dataService = OpencmisDataService.newDataService( config );
         String testString = "TEST";
         try (InputStream saveIs = new ByteArrayInputStream( testString.getBytes() ) ) {
@@ -64,6 +68,32 @@ class TestCmisService {
             }
         }
         Assertions.assertNotNull( dataService );
+    }
+
+    @Test
+    void testDataServiceOpencmisConfig() throws IOException, ConfigException {
+        // ws configuration
+        Properties configPropertiesWs = PropsIO.loadFromClassLoader("config/opencmis_data_service_ws.properties");
+        OpencmisDataServiceConfig configWs = new OpencmisDataServiceConfigDefault( NAMESPACE_CONFIG, configPropertiesWs );
+        OpencmisDataService dataServiceWs = OpencmisDataService.newDataService( configWs );
+        Assertions.assertNotNull( dataServiceWs );
+        // check double configurations
+        Assertions.assertThrows( ConfigException.class, () -> dataServiceWs.setup( configWs ) );
+        // check invalid binding
+        configPropertiesWs.setProperty( NAMESPACE_CONFIG+OpencmisDataServiceFacade.KEY_BINDING_TYPE, "unknown" );
+        OpencmisDataServiceConfig configWsFail = new OpencmisDataServiceConfigDefault( NAMESPACE_CONFIG, configPropertiesWs );
+        OpencmisDataService dataServiceWsFail = new OpencmisDataService();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> dataServiceWsFail.setup( configWsFail ));
+        // atom configuration
+        Properties configPropertiesAtom = PropsIO.loadFromClassLoader("config/opencmis_data_service_atom.properties");
+        OpencmisDataServiceConfig configAtom = new OpencmisDataServiceConfigDefault( NAMESPACE_CONFIG, configPropertiesAtom );
+        OpencmisDataService dataServiceAtom = OpencmisDataService.newDataService( configAtom );
+        Assertions.assertNotNull( dataServiceAtom );
+        // test missing
+        configPropertiesAtom.remove( NAMESPACE_CONFIG+SessionParameter.ATOMPUB_URL );
+        OpencmisDataServiceConfig configAtomFail = new OpencmisDataServiceConfigDefault( NAMESPACE_CONFIG, configPropertiesAtom );
+        OpencmisDataService dataServiceAtomFail = new OpencmisDataService();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> dataServiceAtomFail.setup( configAtomFail ));
     }
 
 }

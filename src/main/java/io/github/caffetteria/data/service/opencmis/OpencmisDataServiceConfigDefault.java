@@ -25,7 +25,7 @@ public class OpencmisDataServiceConfigDefault implements OpencmisDataServiceConf
     public String getValue(String name) {
         String key = this.configNamespace+name;
         String value = this.configProperties.getProperty( this.configNamespace+name );
-        log.info( "key : {}, value : {}", key, value );
+        log.debug( "key : {}, value : {}", key, value );
         return value;
     }
 
