@@ -24,6 +24,11 @@
 		<fj-version>8.5.3</fj-version>
 		<fj-service-helper-version>0.3.1</fj-service-helper-version>
 		<opencmis-version>1.1.0</opencmis-version>
+		<!-- test dependencies -->
+		<testcontainers-version>1.19.7</testcontainers-version>
+		<junit-jupiter-version>5.10.2</junit-jupiter-version>
+		<testcontainers-core-version>${testcontainers-version}</testcontainers-core-version>
+		<testcontainers-junit-version>${testcontainers-version}</testcontainers-junit-version>
 	</properties>	
 
 	<organization>
@@ -99,16 +104,36 @@
 		</dependency>
 		<!-- opencmis end -->
 
+		<!-- dev dependencies -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- test dependencies -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit-jupiter-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<version>${testcontainers-core-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${testcontainers-junit-version}</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
