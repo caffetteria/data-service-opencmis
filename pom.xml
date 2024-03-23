@@ -7,7 +7,7 @@
 
 	<name>Data Servcice OpenCMIS</name>
 	<description>Simple Data Service Implementation based on Apache OpenCMIS</description>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 
 	<licenses>
 		<license>
@@ -18,6 +18,7 @@
 	</licenses>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <java-version-compliance>8</java-version-compliance>
 		<maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
@@ -31,6 +32,17 @@
 		<jacoco-maven-plugin-version>0.8.11</jacoco-maven-plugin-version>
 		<testcontainers-core-version>${testcontainers-version}</testcontainers-core-version>
 		<testcontainers-junit-version>${testcontainers-version}</testcontainers-junit-version>
+		<!-- release dependancies -->
+		<central-version>0.4.0</central-version>
+		<mvn-gpg-version>3.1.0</mvn-gpg-version>
+		<!-- maven plugin versions -->
+		<mvn-compiler-version>3.12.1</mvn-compiler-version>
+		<mvn-source-version>3.3.0</mvn-source-version>
+		<mvn-javadoc-version>3.6.3</mvn-javadoc-version>
+		<!-- lombok maven -->
+		<lombok-version>1.18.30</lombok-version>
+		<lombok-maven-plugin-version>1.18.20.0</lombok-maven-plugin-version>
+		<delombok-output-dir>${project.build.directory}/generated-sources/delombok</delombok-output-dir>
 	</properties>	
 
 	<organization>
@@ -51,6 +63,17 @@
 		<system>GitHub</system>
 		<url>https://github.com/caffetteria/data-service-opencmis/issues</url>
 	</issueManagement>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>central</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>central</id>
+			<url>https://s01.oss.sonatype.org//service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
 
 	<dependencyManagement>
 		<dependencies>
@@ -213,6 +236,238 @@
 			</build>
 		</profile>
 
+		<profile>
+			<id>full</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok-maven-plugin</artifactId>
+						<version>${lombok-maven-plugin-version}</version>
+						<executions>
+							<execution>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>delombok</goal>
+								</goals>
+								<configuration>
+									<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+									<addOutputDirectory>false</addOutputDirectory>
+									<outputDirectory>${delombok-output-dir}</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+								<version>${lombok-version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<sourcepath>${javadoc-javasource-path}</sourcepath>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>metadata</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>buildnumber-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>create</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<doCheck>true</doCheck>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<archive>
+								<manifest>
+									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								</manifest>
+								<manifestEntries>
+									<Implementation-Build>${buildNumber}</Implementation-Build>
+									<!-- osgi bundle properties https://docs.osgi.org/download/r8/osgi.core-8.0.0.pdf -->
+									<Bundle-License>${licenseURL}</Bundle-License>
+									<Bundle-Description>${project.description}</Bundle-Description>
+									<Bundle-Name>${project.name}</Bundle-Name>
+									<Bundle-ManifestVersion>4</Bundle-ManifestVersion>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+
+		<profile>
+			<id>doRelease</id>
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>buildnumber-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>create</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<doCheck>true</doCheck>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<archive>
+								<manifest>
+									<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+								</manifest>
+								<manifestEntries>
+									<Implementation-Build>${buildNumber}</Implementation-Build>
+									<!-- osgi bundle properties https://docs.osgi.org/download/r8/osgi.core-8.0.0.pdf -->
+									<Bundle-License>${licenseURL}</Bundle-License>
+									<Bundle-Description>${project.description}</Bundle-Description>
+									<Bundle-Name>${project.name}</Bundle-Name>
+									<Bundle-ManifestVersion>4</Bundle-ManifestVersion>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok-maven-plugin</artifactId>
+						<version>${lombok-maven-plugin-version}</version>
+						<executions>
+							<execution>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>delombok</goal>
+								</goals>
+								<configuration>
+									<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+									<addOutputDirectory>false</addOutputDirectory>
+									<outputDirectory>${delombok-output-dir}</outputDirectory>
+								</configuration>
+							</execution>
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+								<version>${lombok-version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<sourcepath>${javadoc-javasource-path}</sourcepath>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>${central-version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>central</publishingServerId>
+							<tokenAuth>true</tokenAuth>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${mvn-gpg-version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+
+			</build>
+		</profile>
+
+
 	</profiles>
+
 
 </project>
