@@ -27,7 +27,7 @@ class TestOpencmisService {
 
     private static final String CMIS_SERVER_TEST_URL = "/cmis/services11/cmis?wsdl";
 
-    private static final int CMIS_SERVER_STARTUP_TIMEOUT_SECONDS = 180;
+    private static final int CMIS_SERVER_STARTUP_TIMEOUT_SECONDS = 90;
 
     private static final String NAMESPACE_CONFIG = "testconfig.";
 
