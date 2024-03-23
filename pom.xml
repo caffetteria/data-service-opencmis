@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.caffetteria</groupId>
+	<artifactId>data-service-opencmis</artifactId>
+
+	<name>Data Servcice OpenCMIS</name>
+	<description>Simple Data Service Implementation based on Apache OpenCMIS</description>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+	    <java-version-compliance>8</java-version-compliance>
+		<fj-version>8.5.3</fj-version>
+		<fj-service-helper-version>0.3.1</fj-service-helper-version>
+	</properties>	
+
+	<organization>
+		<url>https://github.com/caffetteria</url>
+		<name>Caffetteria</name>
+	</organization>
+	
+	<url>https://github.com/caffetteria</url>
+	
+	<scm>
+		<connection>scm:git:git://github.com/caffetteria/data-service-opencmis.git</connection>
+		<developerConnection>scm:git:ssh://github.com/caffetteria/data-service-opencmis.git</developerConnection>
+		<url>https://github.com/caffetteria/data-service-opencmis.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/caffetteria/data-service-opencmis/issues</url>
+	</issueManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-service-helper-bom</artifactId>
+				<version>${fj-service-helper-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-core</artifactId>
+			<version>${fj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<developers>
+		<developer>
+			<name>Matteo Franci</name>
+			<email>mttfranci@gmail.com</email>
+			<url>https://github.com/mttfranci/</url>
+			<timezone>+1</timezone>
+			<organization>Caffetteria</organization>
+			<organizationUrl>https://github.com/caffetteria/</organizationUrl>
+			<roles>
+				<role>IT Senior Consultant</role>
+				<role>Senior Software Architect</role>
+			</roles>
+		</developer>
+	</developers>
+
+</project>
