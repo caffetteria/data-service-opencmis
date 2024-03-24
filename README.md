@@ -77,4 +77,12 @@ testconfig.setTitle = false
 | setTitle         | false        | false   | se 'true' imposta l'attributo 'title' sui documenti |
 
 
+## OpenCMIS test server
 
+Il progetto è stato testato con l'immagine docker : 
+
+<https://hub.docker.com/repository/docker/fugeritorg/opencmis/general>
+
+Basata sul repository : 
+
+<https://github.com/caffetteria/cmis-server>
