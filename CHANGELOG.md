@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2024-03-24
+
 ### Added
 
 - logo
@@ -15,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - metodo DataService.save( InputStream, String ) implementato.
 - fj-service-helper-version 0.3.2
+- test container basato su immagine fugeritorg/opencmis:latest
 
 ## [0.1.0] - 2024-03-23
 
