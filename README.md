@@ -20,7 +20,17 @@ che si interfaccia con un server
 
 ## Quickstart
 
-1. Definire le proprietà di configurazione : 
+1. Aggiungere dipendenza : 
+
+```xml
+<dependency>
+    <groupId>io.github.caffetteria</groupId>
+    <artifactId>data-service-opencmis</artifactId>
+    <version>${data-service-opencmis-version}</version>
+</dependency>
+```
+
+2. Definire le proprietà di configurazione : 
 
 ```
 testconfig.objectTypeId=cmis:document
@@ -33,7 +43,7 @@ testconfig.repositoryFolder = /
 testconfig.setTitle = false
 ```
 
-2. Creazioen e uso data service
+3. Creazione e uso data service
 
 ```
         // esempio di configurazione 
