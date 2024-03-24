@@ -22,16 +22,13 @@
 	    <java-version-compliance>8</java-version-compliance>
 		<maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
+		<fj-bom-version>1.6.3</fj-bom-version>
 		<fj-version>8.5.3</fj-version>
 		<fj-service-helper-version>0.3.2</fj-service-helper-version>
 		<opencmis-version>1.1.0</opencmis-version>
 		<!-- test dependencies -->
 		<mvn-surefire-version>3.2.5</mvn-surefire-version>
-		<testcontainers-version>1.19.7</testcontainers-version>
-		<junit-jupiter-version>5.10.2</junit-jupiter-version>
 		<jacoco-maven-plugin-version>0.8.11</jacoco-maven-plugin-version>
-		<testcontainers-core-version>${testcontainers-version}</testcontainers-core-version>
-		<testcontainers-junit-version>${testcontainers-version}</testcontainers-junit-version>
 		<!-- release dependancies -->
 		<central-version>0.4.0</central-version>
 		<mvn-gpg-version>3.1.0</mvn-gpg-version>
@@ -81,6 +78,13 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-bom</artifactId>
+				<version>${fj-bom-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-service-helper-bom</artifactId>
@@ -149,19 +153,16 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>${junit-jupiter-version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>testcontainers</artifactId>
-			<version>${testcontainers-core-version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>${testcontainers-junit-version}</version>
 			<scope>test</scope>
 		</dependency>
 
