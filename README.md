@@ -16,6 +16,8 @@ Semplice implementazione di un
 che si interfaccia con un server 
 [OpenCMIS](https://chemistry.apache.org/java/developing/dev-server.html).
 
+![Data Service OpenCMIS](src/main/docs/dso_logo.jpg "Data Service OpenCMIS")
+
 ## Quickstart
 
 1. Definire le proprietà di configurazione : 
