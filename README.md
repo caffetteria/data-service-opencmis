@@ -12,7 +12,7 @@
 [![Apache Maven](https://img.shields.io/badge/Apache%20Maven-3.9.0+-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)](https://universe.fugerit.org/src/docs/versions/maven3_9.html)
 
 Semplice implementazione di un 
-[Data Service Client](https://github.com/caffetteria/fj-service-helper-bom/tree/main/data-service-base)
+[Data Service Client](https://github.com/fugerit-org/fj-service-helper-bom/tree/main/data-service-base)
 che si interfaccia con un server 
 [OpenCMIS](https://chemistry.apache.org/java/developing/dev-server.html).
 
