@@ -14,12 +14,12 @@ import org.apache.chemistry.opencmis.commons.SessionParameter;
 import org.apache.chemistry.opencmis.commons.data.ContentStream;
 import org.apache.chemistry.opencmis.commons.enums.BindingType;
 import org.apache.chemistry.opencmis.commons.enums.VersioningState;
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.db.dao.DAORuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.simple.config.ConfigParams;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -56,7 +56,7 @@ public class OpencmisDataServiceFacade {
 
     public static final String FLAG_SET_TITLE = "setTitle";
 
-    public OpencmisDataServiceFacade(OpencmisDataServiceConfig config) {
+    public OpencmisDataServiceFacade(ConfigParams config) {
         log.debug("init CmisClientFacade : {}", config);
         this.cmisParameters = setupCmisBinding(config);
         this.setMyRepositoryFolder(config.getValue(KEY_REPOSITORY_FOLDER));
@@ -107,10 +107,10 @@ public class OpencmisDataServiceFacade {
         return sessionfactory;
     }
 
-    private void addParameter(SessionParameterMap cmisParameters, OpencmisDataServiceConfig config, String configParameterName) {
+    private void addParameter(SessionParameterMap cmisParameters, ConfigParams config, String configParameterName) {
         this.addParameter( cmisParameters, config, configParameterName, configParameterName );
     }
-    private void addParameter(SessionParameterMap cmisParameters, OpencmisDataServiceConfig config,  String configParameterName, String cmisParameterName) {
+    private void addParameter(SessionParameterMap cmisParameters, ConfigParams config,  String configParameterName, String cmisParameterName) {
         String parameterValue = config.getValue( configParameterName );
         if (StringUtils.isEmpty( parameterValue ) ) {
             throw new IllegalArgumentException( String.format( "Missing required parameter : '%s'", configParameterName ) );
@@ -120,7 +120,7 @@ public class OpencmisDataServiceFacade {
         }
     }
 
-    private SessionParameterMap setupCmisBinding(OpencmisDataServiceConfig config) {
+    private SessionParameterMap setupCmisBinding(ConfigParams config) {
         SessionParameterMap sessionParameterMap = new SessionParameterMap();
 
         BindingType cmisBindingType;

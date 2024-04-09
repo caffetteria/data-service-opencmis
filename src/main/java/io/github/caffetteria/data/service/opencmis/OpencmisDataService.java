@@ -3,6 +3,7 @@ package io.github.caffetteria.data.service.opencmis;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.dsb.DataService;
+import org.fugerit.java.simple.config.ConfigParams;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -64,7 +65,7 @@ public class OpencmisDataService implements DataService {
      * @return                   the self configured instance
      * @throws ConfigException   if configuration issues arise
      */
-    public OpencmisDataService setup( OpencmisDataServiceConfig config ) throws ConfigException {
+    public OpencmisDataService setup( ConfigParams config ) throws ConfigException {
         if ( this.facade == null ) {
             this.facade = new OpencmisDataServiceFacade( config );
         } else {
@@ -80,7 +81,7 @@ public class OpencmisDataService implements DataService {
      * @return                  the self configured instance
      * @throws ConfigException  if configuration issues arise
      */
-    public static OpencmisDataService newDataService(OpencmisDataServiceConfig config ) throws ConfigException {
+    public static OpencmisDataService newDataService(ConfigParams config ) throws ConfigException {
         return new OpencmisDataService().setup( config );
     }
 

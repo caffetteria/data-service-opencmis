@@ -7,7 +7,7 @@
 
 	<name>Data Servcice OpenCMIS</name>
 	<description>Simple Data Service Implementation based on Apache OpenCMIS</description>
-	<version>0.2.2-SNAPSHOT</version>
+	<version>${revision}</version>
 
 	<licenses>
 		<license>
@@ -18,13 +18,14 @@
 	</licenses>
 
 	<properties>
+		<revision>1.0.0</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <java-version-compliance>8</java-version-compliance>
 		<maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
-		<fj-bom-version>1.6.3</fj-bom-version>
-		<fj-version>8.5.3</fj-version>
-		<fj-service-helper-version>0.3.3</fj-service-helper-version>
+		<fj-bom-version>1.6.4</fj-bom-version>
+		<fj-version>8.5.5</fj-version>
+		<fj-service-helper-version>1.2.0</fj-service-helper-version>
 		<opencmis-version>1.1.0</opencmis-version>
 		<!-- test dependencies -->
 		<mvn-surefire-version>3.2.5</mvn-surefire-version>
@@ -37,7 +38,7 @@
 		<mvn-source-version>3.3.0</mvn-source-version>
 		<mvn-javadoc-version>3.6.3</mvn-javadoc-version>
 		<!-- lombok maven -->
-		<lombok-version>1.18.30</lombok-version>
+		<lombok-version>1.18.32</lombok-version>
 		<lombok-maven-plugin-version>1.18.20.0</lombok-maven-plugin-version>
 		<delombok-output-dir>${project.build.directory}/generated-sources/delombok</delombok-output-dir>
 	</properties>	
@@ -101,6 +102,12 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
 			<version>${fj-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>simple-config</artifactId>
+			<version>${fj-service-helper-version}</version>
 		</dependency>
 
 		<dependency>

@@ -7,9 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-04-09
+
+### Changed
+
+- fj-service-helper-version 1.2.0
+- refactor using [simple-config] ConfigParams
+- OpencmisDataServiceConfig substituted (this version is not backward compatible)
+
 ## [0.2.1] - 2024-03-24
 
-- fj-service-helper-version 0.3.3
+### Changed
+
+- fj-service-helper-version 1.0.0
 
 ## [0.2.0] - 2024-03-24
 
@@ -17,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - logo
 
-### Changed
+- fj-service-helper-version 0.3.3
 
 - metodo DataService.save( InputStream, String ) implementato.
 - fj-service-helper-version 0.3.2
