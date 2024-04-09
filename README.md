@@ -50,7 +50,7 @@ testconfig.setTitle = false
         // nota : e' possibile creare implementazioni personalizzate di OpencmisDataServiceConfig
         Properties configProperties = ... caricamento configurazione ...
         String configNamespace = "testconfig.";
-        OpencmisDataServiceConfig config = new OpencmisDataServiceConfigDefault( configNamespace, configProperties );
+        ConfigParams config = new ConfigParamsDefault( configNamespace, configProperties );
         // utilizzo
         OpencmisDataService dataService = OpencmisDataService.newDataService( config );
         String testString = "TEST";
