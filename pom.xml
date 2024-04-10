@@ -7,7 +7,7 @@
 
 	<name>Data Servcice OpenCMIS</name>
 	<description>Simple Data Service Implementation based on Apache OpenCMIS</description>
-	<version>${revision}</version>
+	<version>1.1.0</version>
 
 	<licenses>
 		<license>
@@ -18,7 +18,6 @@
 	</licenses>
 
 	<properties>
-		<revision>1.0.1</revision>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <java-version-compliance>8</java-version-compliance>
 		<maven.compiler.source>${java-version-compliance}</maven.compiler.source>
