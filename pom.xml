@@ -7,7 +7,7 @@
 
 	<name>Data Servcice OpenCMIS</name>
 	<description>Simple Data Service Implementation based on Apache OpenCMIS</description>
-	<version>1.1.0</version>
+	<version>1.1.1</version>
 
 	<licenses>
 		<license>
@@ -24,7 +24,7 @@
 		<maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 		<fj-bom-version>1.6.4</fj-bom-version>
 		<fj-version>8.5.5</fj-version>
-		<fj-service-helper-version>1.3.0</fj-service-helper-version>
+		<fj-service-helper-version>1.3.2</fj-service-helper-version>
 		<opencmis-version>1.1.0</opencmis-version>
 		<!-- test dependencies -->
 		<mvn-surefire-version>3.2.5</mvn-surefire-version>
