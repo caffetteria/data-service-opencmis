@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2024-04-17
+
+### Added
+
+- Aggiunto flatten-maven-plugin <https://maven.apache.org/maven-ci-friendly.html>
+
+### Changed
+
+- `<autoPublish>true</autoPublish>`  versioni
+
+### Fixed
+
+- correzione pubblicazione con ${revision}
+
 ## [1.1.1] - 2024-04-11
 
 ### Changed
