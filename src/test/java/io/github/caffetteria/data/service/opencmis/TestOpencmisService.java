@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.io.ByteArrayInputStream;
@@ -21,6 +22,7 @@ import java.time.Duration;
 import java.util.Properties;
 
 @Slf4j
+@Testcontainers(disabledWithoutDocker = true)
 class TestOpencmisService {
 
     private static final String CMIS_SERVER_DOCKER_IMAGE = "fugeritorg/opencmis:latest";

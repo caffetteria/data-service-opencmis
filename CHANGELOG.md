@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- disabled test depending on testcontainers if no docker environment found.
+
 ## [1.1.2] - 2024-04-17
 
 ### Added
