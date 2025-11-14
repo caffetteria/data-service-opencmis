@@ -28,16 +28,16 @@
 		<fj-service-helper-version>1.5.3</fj-service-helper-version>
 		<opencmis-version>1.1.0</opencmis-version>
 		<!-- test dependencies -->
-		<mvn-surefire-version>3.2.5</mvn-surefire-version>
+		<mvn-surefire-version>3.5.4</mvn-surefire-version>
 		<jacoco-maven-plugin-version>0.8.14</jacoco-maven-plugin-version>
 		<!-- release dependancies -->
 		<central-version>0.9.0</central-version>
 		<mvn-gpg-version>3.1.0</mvn-gpg-version>
 		<!-- maven plugin versions -->
-		<mvn-compiler-version>3.12.1</mvn-compiler-version>
-		<mvn-source-version>3.3.0</mvn-source-version>
-		<mvn-javadoc-version>3.6.3</mvn-javadoc-version>
-		<mvn-flatten-version>1.6.0</mvn-flatten-version>
+		<mvn-compiler-version>3.14.1</mvn-compiler-version>
+		<mvn-source-version>3.3.1</mvn-source-version>
+		<mvn-javadoc-version>3.12.0</mvn-javadoc-version>
+		<mvn-flatten-version>1.7.3</mvn-flatten-version>
 		<!-- lombok maven -->
 		<lombok-version>1.18.42</lombok-version>
 		<lombok-maven-plugin-version>1.18.20.0</lombok-maven-plugin-version>
