@@ -39,7 +39,7 @@
 		<mvn-javadoc-version>3.6.3</mvn-javadoc-version>
 		<mvn-flatten-version>1.6.0</mvn-flatten-version>
 		<!-- lombok maven -->
-		<lombok-version>1.18.32</lombok-version>
+		<lombok-version>1.18.42</lombok-version>
 		<lombok-maven-plugin-version>1.18.20.0</lombok-maven-plugin-version>
 		<delombok-output-dir>${project.build.directory}/generated-sources/delombok</delombok-output-dir>
 	</properties>	

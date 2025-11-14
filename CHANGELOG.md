@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- lombok-version 1.18.42
 - fj-bom version 2.0.5
 - disabled test depending on testcontainers if no docker environment found.
 
