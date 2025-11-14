@@ -5,14 +5,13 @@ import org.fugerit.java.simple.config.ConfigParamsDefault;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Optional;
 import java.util.Properties;
 
 class TestOpencmisConfig {
 
     @Test
-    void testConfigDefault() throws IOException {
+    void testConfigDefault() {
         Properties configProperties = new Properties();
         String userTest = "user1";
         configProperties.setProperty( OpencmisDataServiceFacade.KEY_USER, userTest );
