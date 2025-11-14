@@ -31,7 +31,7 @@
 		<mvn-surefire-version>3.2.5</mvn-surefire-version>
 		<jacoco-maven-plugin-version>0.8.14</jacoco-maven-plugin-version>
 		<!-- release dependancies -->
-		<central-version>0.4.0</central-version>
+		<central-version>0.9.0</central-version>
 		<mvn-gpg-version>3.1.0</mvn-gpg-version>
 		<!-- maven plugin versions -->
 		<mvn-compiler-version>3.12.1</mvn-compiler-version>
