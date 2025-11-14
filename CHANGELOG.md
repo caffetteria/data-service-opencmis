@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- jacoco-maven-plugin-version 0.8.14
 - fj-service-helper-version 1.5.3
 - fj-version 8.7.1
 - lombok-version 1.18.42
